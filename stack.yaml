@@ -1,0 +1,6 @@
+flags: {}
+packages:
+- '.'
+extra-deps: 
+- bitset-1.4.8
+resolver: lts-2.15
