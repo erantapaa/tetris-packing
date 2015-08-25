@@ -1,5 +1,9 @@
 A branch-and-bound algorithm to pack Tetris pieces into a grid.
 
+Original problem description:
+
+https://github.com/instructure/contests/blob/master/2012-mebipenny/contest/kyles-kitchen/description.html
+
 Problems in the `data/` directory are from
 
 https://github.com/instructure/contests/tree/master/2012-mebipenny/contest/kyles-kitchen
@@ -12,7 +16,7 @@ Run the DFS solver:
 
     ghci> runSolver solve2 "2 4 C C"
 
-Solve a problem from a file:
+Solve a problem from a file using a specific solver.
 
     ghci> solveFile solve1 "data/stdin6.txt"
 
