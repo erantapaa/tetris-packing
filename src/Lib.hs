@@ -146,7 +146,8 @@ search2 :: Solution    -- best solution so far
 search2 best rows current grid pieces =
   -- check here if current can beat best
   let free = freeCells rows current grid
-      maxPossible = nPlacements current + (free `div` 4)
+      tilesLeft = sum [ n | (kind, n) <- pieces, kind /= Blank ] -- number of tiles left to place
+      maxPossible = nPlacements current + (min (free `div` 4) tilesLeft)
       cell = availableSquare rows grid
       msg = "best: " ++ show n ++ " cell: " ++ show cell ++ " maxPoss: " ++ show maxPossible
         where n = nPlacements best
@@ -197,11 +198,7 @@ solve2 (rows, cols, npieces, pieces, grid) =
 
 runSolver solver str = do
   let setup@(rows, cols, npieces, pieces, grid) = readProblem str
-      m = max ( (div rows 4) * (div cols 2) )
-              ( (div cols 4) * (div rows 2) )
-  if m >= npieces
-    then putStrLn "all pieces can fit"
-    else print $ solver setup
+  print $ solver setup
 
 readPieceCount :: [String] -> PieceCount
 readPieceCount ws =  map (\xs -> (head xs, length xs)) $ group $ sort [ x | Just x <- map go ws ]
